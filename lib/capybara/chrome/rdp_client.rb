@@ -175,7 +175,7 @@ module Capybara::Chrome
     end
 
     def discover_ws_url
-      response = open("http://#{@chrome_host}:#{@chrome_port}/json")
+      response = URI.open("http://#{@chrome_host}:#{@chrome_port}/json")
       data = JSON.parse(response.read)
       first_page = data.detect {|e| e["type"] == "page"}
       @ws_url = first_page["webSocketDebuggerUrl"]
